@@ -19,7 +19,7 @@ define limits::fragment (
   $file_name = regsubst($title, '\/', '_', 'G')
 
   file { "${limits::fragments_dir}/${file_name}.txt":
-    content => inline_template("<%= title.gsub('/', ' ') %> <%= value %>\n"),
+    content => inline_template("<%= @title.gsub('/', ' ') %> <%= @value %>\n"),
     before => Exec['cp_limits']
   }
 }
