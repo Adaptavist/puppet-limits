@@ -1,17 +1,27 @@
 # Limits module for Puppet
 
 ## Description
-Module for managing pam limits in /etc/security/limits.conf
+Module for managing pam limits in /etc/security/limits.conf.
 
 ## Usage
 
-### limits::fragment
+### limits::fragment - Simple usage
 
 <pre>
-  limits::fragment {
+  limits::fragment
     "*/soft/nofile":
-      value => "1024";
+      value: "1024"
     "*/hard/nofile":
-      value => "8192";
+      value: "8192"
   }
 </pre>
+
+### Additional parameters: 
+- title - should be of the form domain/(hard|soft-)/item if $domain, $type
+        and $item are not present
+- value - value of limit, use undef to remove the value
+- domain - limit domain
+- type - limit type (hard|soft|-)
+- item - limit item
+- limits_file - limits configuration file, default /etc/security/limits.conf
+
