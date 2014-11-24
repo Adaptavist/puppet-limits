@@ -1,6 +1,6 @@
-name    'puppetlabs-limits'
+name 'puppetlabs-limits'
 version '0.0.2'
-source 'https://github.com/puppetlabs/puppetlabs-limits'
+source 'git://github.com/puppetlabs/puppetlabs-limits.git'
 author 'puppetlabs'
 license 'Apache 2.0'
 summary 'Defined resource type for managing /etc/security/limits'
