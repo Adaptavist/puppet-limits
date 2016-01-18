@@ -1,4 +1,5 @@
 # Limits module for Puppet
+[![Build Status](https://travis-ci.org/Adaptavist/puppet-limits.svg?branch=master)](https://travis-ci.org/Adaptavist/puppet-limits)
 
 ## Description
 Module for managing pam limits in /etc/security/limits.conf.
