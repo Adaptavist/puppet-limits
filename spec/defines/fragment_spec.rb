@@ -9,12 +9,16 @@ describe 'limits::fragment' do
       }}
     it 'should set foo hard nproc 100 in /etc/security/limits.conf' do
       title ='limits_conf/foo/hard/nproc'
-      should contain_augeas(title).with('context' => '/files/etc/security/limits.conf')
-      changes = catalogue(:define).resource('augeas', title).send(:parameters)[:changes]
-      changes.should include "set domain[last()+1] foo",
-                             "set domain[last()]/type hard",
-                             "set domain[last()]/item nproc",
-                             "set domain[last()]/value 100"
+      should contain_augeas(title).with(
+        'context' => '/files/etc/security/limits.conf',
+        'changes' => [
+          "rm domain[.=\"foo\"][./type=\"hard\" and ./item=\"nproc\"]", 
+          "set domain[last()+1] foo",
+          "set domain[last()]/type hard",
+          "set domain[last()]/item nproc",
+          "set domain[last()]/value 100"
+        ]
+      )
     end
   end
 
@@ -28,12 +32,16 @@ describe 'limits::fragment' do
       }}
     it 'should set foo hard nproc 100 in /etc/security/limits.conf' do
       title ='limits_conf/my_limits_config'
-      should contain_augeas(title).with('context' => '/files/etc/security/limits.conf')
-      changes = catalogue(:define).resource('augeas', title).send(:parameters)[:changes]
-      changes.should include "set domain[last()+1] foo",
-                             "set domain[last()]/type hard",
-                             "set domain[last()]/item nproc",
-                             "set domain[last()]/value 100"
+      should contain_augeas(title).with(
+        'context' => '/files/etc/security/limits.conf',
+        'changes' => [
+          "rm domain[.=\"foo\"][./type=\"hard\" and ./item=\"nproc\"]", 
+          "set domain[last()+1] foo",
+          "set domain[last()]/type hard",
+          "set domain[last()]/item nproc",
+          "set domain[last()]/value 100"
+        ]
+      )
     end
   end
 
@@ -59,9 +67,10 @@ describe 'limits::fragment' do
       }}
     it 'should remove the value' do
       title ='limits_conf/my_limits_config'
-      should contain_augeas(title).with('context' => '/files/etc/security/limits.conf')
-      changes = catalogue(:define).resource('augeas', title).send(:parameters)[:changes]
-      changes.should include 'rm domain[.="foo"][./type="hard" and ./item="nproc"]'
+      should contain_augeas(title).with(
+        'context' => '/files/etc/security/limits.conf',
+        'changes' => 'rm domain[.="foo"][./type="hard" and ./item="nproc"]'
+      )
     end
   end
 
@@ -73,7 +82,7 @@ describe 'limits::fragment' do
     it 'should fail with invalid domain' do
       expect {
         should compile
-      }.to raise_error(Puppet::Error)
+      }.to raise_error(RSpec::Expectations::ExpectationNotMetError)
     end
   end
 end
