@@ -1,5 +1,5 @@
 name 'puppetlabs-limits'
-version '0.0.3'
+version '0.0.4'
 source 'git://github.com/puppetlabs/puppetlabs-limits.git'
 author 'puppetlabs'
 license 'Apache 2.0'
