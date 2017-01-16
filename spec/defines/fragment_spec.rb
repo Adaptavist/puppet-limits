@@ -69,7 +69,7 @@ describe 'limits::fragment' do
       title ='limits_conf/my_limits_config'
       should contain_augeas(title).with(
         'context' => '/files/etc/security/limits.conf',
-        'changes' => 'rm domain[.="foo"][./type="hard" and ./item="nproc"]'
+        'changes' => ['rm domain[.="foo"][./type="hard" and ./item="nproc"]']
       )
     end
   end
