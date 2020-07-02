@@ -1,4 +1,7 @@
 # puppi is a dependency of java and firewall is an optional dependency
 fixtures:
+  repositories:
+    augeas_core:
+        repo: "https://github.com/puppetlabs/puppetlabs-augeas_core"
   symlinks:
     'limits': "#{source_dir}"
